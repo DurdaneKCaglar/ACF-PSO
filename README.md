@@ -1,107 +1,165 @@
-# Advanced Composite Fitness Particle Swarm Optimization: Achieving Theoretical Maximum Nonlinearity for S-box Design
+# Advanced Composite Fitness Particle Swarm Optimization for S-box Design
+
+> Achieving theoretical maximum nonlinearity (112) for 8-bit S-boxes through a novel composite fitness PSO framework with guided swaps, triple swap operations, and adaptive perturbation strategies.
+
+---
 
 ## 📋 Table of Contents
+
 - [Overview](#overview)
-- [Data Structure](#data-structure)
-- [Experiment Types](#experiment-types)
+- [Key Features](#key-features)
+- [Repository Structure](#repository-structure)
+- [Experiments](#experiments)
+  - [1. Main Experiments](#1-main-experiments-main_experiments)
+  - [2. Weight Sensitivity Analysis](#2-weight-sensitivity-analysis-weight_sensitivity)
+  - [3. Ablation Study](#3-ablation-study-ablation)
+  - [4. Multiple Run Tests](#4-multiple-run-tests-multiple_runs)
+- [File Format Reference](#file-format-reference)
+- [Requirements](#requirements)
+- [Contact](#contact)
+
+---
 
 ## 🔍 Overview
 
-This repository contains experimental results for [brief description of your project]. The repository includes 4 distinct categories of experiments designed to evaluate [your research goal].
+This repository provides the complete experimental data accompanying our research on **S-box optimization via Particle Swarm Optimization (PSO)**. The proposed algorithm employs a **composite fitness function** that simultaneously optimizes nonlinearity (NL), Strict Avalanche Criterion (SAC), and Differential Distribution Table (DDT) properties to construct cryptographically strong S-boxes.
 
-## 📁 Data Structure
+The optimization framework introduces several novel components — including **guided swap**, **triple swap**, and **perturbation** mechanisms — that work together to escape local optima and consistently reach the **theoretical maximum nonlinearity of 112** for 8×8 S-boxes. An early stopping criterion based on the NL threshold further ensures computational efficiency.
+
+All experiments are fully reproducible and organized into four complementary categories: main experiments validating the approach across diverse configurations, weight sensitivity analysis quantifying the impact of fitness component weights, ablation studies isolating each algorithmic component's contribution, and multiple-run tests confirming stability and reproducibility.
+
+## ✨ Key Features
+
+- **Composite Fitness Function** — Joint optimization of NL, SAC, DDT, and Entropy
+- **Guided & Triple Swap Operators** — Domain-specific mutation strategies for S-box permutations
+- **Adaptive Perturbation** — Escape mechanism for stagnation in local optima
+- **Early Stopping** — NL-threshold-based termination for computational efficiency
+- **Scalable PSO** — Tested with population sizes of 100, 200, and 1000 particles
+
+## 📁 Repository Structure
+
 ```
-experiments
-├── main_experiments/     # Main experiments (30 cases × 3 files)
-├── weight_sensitivity/   # Weight sensitivity analysis (3 weights × 3 initals × 5 runs × 3 files)
-├── ablation/             # Ablation study (5 stages × 5 runs × 3 files)
-├── multiple_runs/        # Multiple run tests (5 cases × 10 iterations × 3 files)
-├── README.md
-└── LICENSE
+experiments/
+├── main_experiments/          # 30 independent optimization runs
+│   ├── Case_1_#P100_99.00_to_112/
+│   │   ├── initial_sbox.txt
+│   │   ├── final_sbox.txt
+│   │   └── global_best_swaps_only.log
+│   ├── Case_2_#P100_99.00_to_112/
+│   └── ...
+│
+├── weight_sensitivity/        # 9 configurations × 5 runs = 45 runs
+│   ├── 01-A-97.25/           # Weight set 01, Initial A, NL start 97.25
+│   │   ├── run01/ ... run05/
+│   ├── 02-B-101.75/
+│   └── ...
+│
+├── ablation/                  # 3 variants × 5 initials × 5 runs = 75 runs
+│   ├── V3/                   # Without Triple Swap
+│   │   ├── 97.25/ ... 103.25/
+│   │   │   ├── RUN 1/ ... RUN 5/
+│   ├── V4/                   # Without Perturbation
+│   ├── V5/                   # Without Guided Swap
+│   └── ...
+│
+├── multiple_runs/             # Stability & reproducibility tests
+└── readme.md
 ```
 
-## 1. Main Experiments (`main_experiments/`)
-- **Total Runs:** 30
-<!--- **Purpose:** [Purpose of your main experiments]-->
+## 🧪 Experiments
 
-<!--#### File Naming Convention
-```
-run_001/
-  ├── output_1.txt  # [Description of content]
-  ├── output_2.txt  # [Description of content]
-  └── output_3.txt  # [Description of content]
-```-->
+### 1. Main Experiments (`main_experiments/`)
 
-#### Description
-The main experiments evaluate. Each run represents an independent trial with multiply initials.
+| Detail | Value |
+|---|---|
+| **Total Runs** | 30 |
+| **Population Sizes** | 100, 200, 1000 |
+| **Target NL** | 112 (theoretical maximum) |
+| **Starting NL Range** | 97.25 – 111.75 |
 
-## 2. Weight Sensitivity Analysis (`weight_sensitivity/`)
-- **Weight Values:** 3 different values
-  - **1 - NL Dominant Values:** w_nl = 0.70, w_sac = 0.20, w_ddt = 0.10 
-  - **2 - SAC Dominant Values:** w_nl = 0.15, w_sac = 0.70, w_ddt = 0.15 
-  - **3 - DDT Dominant Values:** w_nl = 0.10, w_sac = 0.20, w_ddt = 0.70 
-- **Runs per Weight:** 5
-- **Total Runs:** 45
-- **Purpose:** Analyze the impact of different weight parameters on model performance
+The main experiments evaluate the full proposed algorithm across varying particle counts and initial S-box qualities. Each `Case_X` folder represents an independent optimization trial. The folder naming convention encodes the configuration: `Case_{id}_#P{particles}_{startNL}_to_{targetNL}`.
 
-<!--#### Folder Structure
-```
-weight_0.1/
-  ├── run_001/
-  │   ├── output_1.txt
-  │   ├── output_2.txt
-  │   └── output_3.txt
-  └── ... (up to run_005)
-weight_0.5/
-  └── ... (same structure)
-weight_1.0/
-  └── ... (same structure)
-```-->
+Each case directory contains three files: the starting S-box permutation (`initial_sbox.txt`), the optimized result (`final_sbox.txt`), and a detailed log of every global best improvement (`global_best_swaps_only.log`).
 
+### 2. Weight Sensitivity Analysis (`weight_sensitivity/`)
 
-## 3. Ablation Study (`ablation/`)
-- **Number of Stages:** 5
-- **Runs per Stage:** 5 different runs for 5 diffrent initials
-- **Total Runs:** 116
-- **Purpose:** Systematically evaluate the contribution of individual model components
+| Detail | Value |
+|---|---|
+| **Weight Configurations** | 3 |
+| **Initials per Config** | 3 (A, B, C) |
+| **Runs per Initial** | 5 |
+| **Total Runs** | 45 |
 
-#### Stages
-- **V1:** Baseline model
-- **V2:** Without Composite Fitness
-- **V3:** Without Triple Swap
-- **V4:** Without Perturbation
-- **V5:** Without Guided Swap
+This experiment investigates how different weightings of the composite fitness components affect optimization performance. Three distinct weight profiles are tested:
 
-<!--#### Folder Structure
-```
-stage_1/
-  ├── run_001/
-  │   ├── output_1.txt  # Training metrics
-  │   ├── output_2.txt  # Validation metrics
-  │   └── output_3.txt  # Test metrics
-  └── ... (up to run_005)
-```-->
+| ID | Profile | w_NL | w_SAC | w_DDT |
+|---|---|---|---|---|
+| 01 | NL-Dominant | 0.70 | 0.20 | 0.10 |
+| 02 | SAC-Dominant | 0.15 | 0.70 | 0.15 |
+| 03 | DDT-Dominant | 0.10 | 0.20 | 0.70 |
 
-## 4. Multiple Run Tests (`multiple_runs/`)
-- **Execution Method:** 5 differebt run is executed 10 consecutive times
-- **Purpose:** Test model stability and reproducibility across repeated executions
+Folder naming follows the pattern `{weightID}-{initial}-{startNL}` (e.g., `01-A-97.25` uses the NL-dominant weights with initial `A` starting at NL = 97.25). Each configuration is repeated 5 times (`run01`–`run05`) with the same three output files per run.
 
+### 3. Ablation Study (`ablation/`)
+
+| Detail | Value |
+|---|---|
+| **Variants** | 3 (V3, V4, V5) |
+| **Initial NL Values** | 5 (97.25, 99, 100, 101.75, 103.25) |
+| **Runs per Setting** | 5 |
+| **Total Runs** | 75 |
+
+The ablation study systematically removes individual algorithmic components to quantify their contribution. Each variant disables a single mechanism while keeping all others active:
+
+| Variant | Description | Removed Component |
+|---|---|---|
+| V1 | Full model (baseline) | — |
+| V2 | Without Composite Fitness | Composite fitness function |
+| **V3** | Without Triple Swap | Triple swap operator |
+| **V4** | Without Perturbation | Perturbation mechanism |
+| **V5** | Without Guided Swap | Guided swap operator |
+
+> **Note:** V1 and V2 results are captured through the main experiments. This directory contains V3, V4, and V5 data, each tested across 5 different starting NL values with 5 independent runs per setting.
+
+### 4. Multiple Run Tests (`multiple_runs/`)
+
+| Detail | Value |
+|---|---|
+| **Configurations** | 5 |
+| **Consecutive Runs** | 10 per configuration |
+
+These experiments assess algorithmic **stability and reproducibility** by executing each configuration 10 consecutive times under identical conditions.
+
+---
+
+## 📄 File Format Reference
+
+Every experiment run produces three files:
+
+| File | Description |
+|---|---|
+| `initial_sbox.txt` | The starting 8×8 S-box permutation (256 `UInt8` values, 16 per line) |
+| `final_sbox.txt` | The optimized S-box after PSO convergence or early stopping |
+| `global_best_swaps_only.log` | Timestamped log of every global best improvement, including step number, particle ID, swap type, indices, and fitness deltas |
+
+The log file records each global best event with its full context: the swap operations applied (e.g., `RANDOM_SWAP`, `GUIDED_SWAP`), local and global fitness improvements, and the timestamp at which the improvement occurred.
 
 ## 🔧 Requirements
+
 ```
 Julia v1.11.2
 
 ProgressMeter v1.11.0
-Random v1.11.0
-Statistics v1.11.1
-Distributed v1.11.0
-Dates v1.11.0
-Printf v1.11.0
-Base.Threads (Julia core)
+Random        v1.11.0
+Statistics    v1.11.1
+Distributed   v1.11.0
+Dates         v1.11.0
+Printf        v1.11.0
+Base.Threads  (Julia core)
 ```
 
 ## 📧 Contact
 
-[Durdane (Kocacoban) Caglar] - [dk796@alumni.york.ac.uk]
+**Durdane (Kocacoban) Caglar** — [dk796@alumni.york.ac.uk](mailto:dk796@alumni.york.ac.uk)
 
-[Ibrahim Caglar] - [ibrahimcaglar@alumni.york.ac.uk]
+**Ibrahim Caglar** — [ibrahimcaglar@alumni.york.ac.uk](mailto:ibrahimcaglar@alumni.york.ac.uk)
