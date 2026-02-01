@@ -24,7 +24,7 @@
 
 This repository provides the complete experimental data accompanying our research on **S-box optimization via Particle Swarm Optimization (PSO)**. The proposed algorithm employs a **composite fitness function** that simultaneously optimizes nonlinearity (NL), Strict Avalanche Criterion (SAC), and Differential Distribution Table (DDT) properties to construct cryptographically strong S-boxes.
 
-The optimization framework introduces several novel components — including **guided swap**, **triple swap**, and **perturbation** mechanisms — that work together to escape local optima and consistently reach the **theoretical maximum nonlinearity of 112** for 8×8 S-boxes. An early stopping criterion based on the NL threshold further ensures computational efficiency.
+The optimization framework introduces several novel components — including **guided swap**, **triple swap**, and **perturbation** mechanisms — that work together to escape local optima and consistently reach the **theoretical maximum nonlinearity of 112** for 8 bit S-boxes. An early stopping criterion based on the NL threshold further ensures computational efficiency.
 
 All experiments are fully reproducible and organized into four complementary categories: main experiments validating the approach across diverse configurations, weight sensitivity analysis quantifying the impact of fitness component weights, ablation studies isolating each algorithmic component's contribution, and multiple-run tests confirming stability and reproducibility.
 
@@ -138,7 +138,7 @@ Every experiment run produces three files:
 
 | File | Description |
 |---|---|
-| `initial_sbox.txt` | The starting 8×8 S-box permutation (256 `UInt8` values, 16 per line) |
+| `initial_sbox.txt` | The starting 16x16 S-box permutation (256 `UInt8` values, 16 per line) |
 | `final_sbox.txt` | The optimized S-box after PSO convergence or early stopping |
 | `global_best_swaps_only.log` | Timestamped log of every global best improvement, including step number, particle ID, swap type, indices, and fitness deltas |
 
