@@ -35,9 +35,7 @@ All experiments are fully reproducible and organized into four complementary cat
 - **Adaptive Perturbation** — Escape mechanism for stagnation in local optima
 - **Early Stopping** — NL-threshold-based termination for computational efficiency
 - **Scalable PSO** — Tested with population sizes of 100, 200, and 1000 particles
-
- experiments/                                                                                                                                                                                  └─────┴──────┴────────┴─────────┴──────┴──────┴────────┴────────────────┴──────┘                                                                                                                                   
-                                                                                                                                                                                                                     
+                                                                                                                                                                                                                    
 ## 📁 Repository Structure                                                                                                                                                                                         
                                                                                                                                                                                                                      
   ```                                                                                                                                                                                                                
