@@ -96,7 +96,8 @@ All experiments are fully reproducible and organized into four complementary cat
   │   └── ...                                                                                                                                                                                                        
                                                                                                                                                                                                                      
   │                                                                                                                                                                                                                                                                                                                                                                                                                                    
-  └── readme.md    
+  └── readme.md
+  ```    
 ## 🧪 Experiments
 
 ### 1. Main Experiments (`TABLE III-OPTIMISATION RESULTS ACROSS ALL TESTED EXPERIMENTAL RUNS/`)
