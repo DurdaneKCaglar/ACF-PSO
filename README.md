@@ -36,52 +36,69 @@ All experiments are fully reproducible and organized into four complementary cat
 - **Early Stopping** — NL-threshold-based termination for computational efficiency
 - **Scalable PSO** — Tested with population sizes of 100, 200, and 1000 particles
 
- experiments/                                                                                                                                                                                                       
-  ├── table_iii_statistical_analysis/     # TABLE III: 10 independent runs × 4 cases                                                                                                                                 
-  │   ├── Case_10_NL111.5/                                                                                                                                                                                           
-  │   │   ├── run_01/ ... run_10/                                                                                                                                                                                    
-  │   ├── Case_13_NL111.5/                                                                                                                                                                                           
-  │   │   ├── run_01/ ... run_10/                                                                                                                                                                                    
-  │   ├── Case_28_NL100/                                                                                                                                                                                             
-  │   │   ├── run_01/ ... run_10/                                                                                                                                                                                    
-  │   └── Case_30_NL101.75/                                                                                                                                                                                          
-  │       ├── run_01/ ... run_10/                                                                                                                                                                                    
-  │                                                                                                                                                                                                                  
-  ├── table_iv_weight_sensitivity/        # TABLE IV: 3 configs × 3 initials × 5 runs = 45 runs                                                                                                                      
-  │   ├── Config_A_0.70_0.20_0.10/                                                                                                                                                                                   
-  │   │   ├── NL_97.25/  run_01/ ... run_05/                                                                                                                                                                         
-  │   │   ├── NL_101.75/ run_01/ ... run_05/                                                                                                                                                                         
-  │   │   └── NL_111.5/  run_01/ ... run_05/                                                                                                                                                                         
-  │   ├── Config_B_0.15_0.70_0.15/                                                                                                                                                                                   
-  │   │   ├── NL_97.25/  ...                                                                                                                                                                                         
-  │   │   ├── NL_101.75/ ...                                                                                                                                                                                         
-  │   │   └── NL_111.5/  ...                                                                                                                                                                                         
-  │   └── Config_C_0.10_0.20_0.70/                                                                                                                                                                                   
-  │       ├── NL_97.25/  ...                                                                                                                                                                                         
-  │       ├── NL_101.75/ ...                                                                                                                                                                                         
-  │       └── NL_111.5/  ...                                                                                                                                                                                         
-  │                                                                                                                                                                                                                  
-  ├── table_v_main_experiments/           # TABLE V: 30 independent optimization runs                                                                                                                                
-  │   ├── Case_01_#P200_99.00_to_112/                                                                                                                                                                                
+ experiments/                                                                                                                                                                                  └─────┴──────┴────────┴─────────┴──────┴──────┴────────┴────────────────┴──────┘                                                                                                                                   
+                                                                                                                                                                                                                     
+## 📁 Repository Structure                                                                                                                                                                                         
+                                                                                                                                                                                                                     
+  ```                                                                                                                                                                                                                
+                                                                                                                                                                                                                     
+  experiments/
+
+  ├── TABLE III-OPTIMISATION RESULTS ACROSS ALL TESTED EXPERIMENTAL RUNS/          # 30 independent optimization runs                                                                                                                                                  
+                                                                                                                                                                                                                     
+  │   ├── Case_1_#P100_99.00_to_112/                                                                                                                                                                                 
+                                                                                                                                                                                                                     
   │   │   ├── initial_sbox.txt                                                                                                                                                                                       
+                                                                                                                                                                                                                     
   │   │   ├── final_sbox.txt                                                                                                                                                                                         
+                                                                                                                                                                                                                     
   │   │   └── global_best_swaps_only.log                                                                                                                                                                             
-  │   ├── Case_02_#P200_99.00_to_112/                                                                                                                                                                                
-  │   └── ... (Case_01 - Case_30)                                                                                                                                                                                    
-  │                                                                                                                                                                                                                  
-  ├── table_ix_ablation_study/            # TABLE IX: 3 variants × 5 initials × 5 runs = 75 runs                                                                                                                     
-  │   ├── V3_without_triple_swap/                                                                                                                                                                                    
-  │   │   ├── NL_97.25/  run_01/ ... run_05/                                                                                                                                                                         
-  │   │   ├── NL_99.00/  ...                                                                                                                                                                                         
-  │   │   ├── NL_100.00/ ...                                                                                                                                                                                         
-  │   │   ├── NL_101.75/ ...                                                                                                                                                                                         
-  │   │   └── NL_103.25/ ...                                                                                                                                                                                         
-  │   ├── V4_without_perturbation/                                                                                                                                                                                   
-  │   │   └── ... (same structure)                                                                                                                                                                                   
-  │   └── V5_without_guided_swap/                                                                                                                                                                                    
-  │       └── ... (same structure)                                                                                                                                                                                   
-  │                                                                                                                                                                                                                  
-  └── README.md  
+                                                                                                                                                                                                                     
+  │   ├── Case_2_#P100_99.00_to_112/                                                                                                                                                                                 
+                                                                                                                                                                                                                     
+  │   └── ...                                                                                                                                                                                                        
+                                                                                                                                                                                                                     
+  │  
+
+
+  ├── TABLE VI-STATISTICAL ANALYSIS ACROSS 10 INDEPENDENT RUNS/             # Stability & reproducibility tests
+
+  │   ├── 1_Case28_100.00_TenRuns/                                                                                                                                                                                 
+  │   │   ├── run01/ ... run05/                                                                                                                                                                                                                    
+  │   │   │   ├── initial_sbox.txt                                                                                                                                                                                       
+                                                                                                                                                                                                                     
+  │   │   │   ├── final_sbox.txt                                                                                                                                                                                         
+                                                                                                                                                                                                                     
+  │   │   │   └── global_best_swaps_only.log  
+                                                                                                                                                                                                                     
+                                                                                                                                                                                                                    
+  ├── TABLE VII-WEIGHT SENSITIVITY ANALYSIS RESULTS/        # 9 configurations × 5 runs = 45 runs                                                                                                                                               
+                                                                                                                                                                                                                     
+  │   ├── A_.70/.20/.10_97.25/           # Weight set 01, Initial A, NL start 97.25                                                                                                                                           
+                                                                                                                                                                                                                     
+  │   │   ├── run01/ ... run05/                                                                                                                                                                                      
+                                                                                                                                                                                                                     
+  │   ├── B_.15/.70/.15_101.75/                                                                                                                                                                                               
+                                                                                                                                                                                                                     
+  │   └── ...                                                                                                                                                                                                        
+                                                                                                                                                                                                                     
+  │                                                                                                                                                                                                                                                                                                                                                                                                                                     
+  ├── TABLE IX-ABLATION STUDY RESULTS/                  # 3 variants × 5 initials × 5 runs = 75 runs                                                                                                                                        
+                                                                                                                                                                                                                     
+  │   ├── V3_ w/o Triple Swap   /                   # Without Triple Swap                                                                                                                                                                
+                                                                                                                                                                                                                     
+  │   │   ├── 97.25/ ... 103.25/                                                                                                                                                                                     
+                                                                                                                                                                                                                     
+  │   │   │   ├── RUN 1/ ... RUN 5/                                                                                                                                                                                  
+                                                                                                                                                                                                                     
+  │   ├── V4_ w/o Perturbation /                   # Without Perturbation                                                                                                                                                               
+                                                                                                                                                                                                                     
+  │   ├── V5_ w/o Guided Swap /                   # Without Guided Swap                                                                                                                                                                
+                                                                                                                                                                                                                     
+  │   └── ...                                                                                                                                                                                                        
+                                                                                                                                                                                                                     
+  │                                                                                                                                                                                                                                                                                                                                                                                                                                    
+  └── readme.md    
 ## 🧪 Experiments
 
 ### 1. Main Experiments (`main_experiments/`)
@@ -141,7 +158,7 @@ The ablation study systematically removes individual algorithmic components to q
 
 | Detail | Value |
 |---|---|
-| **Configurations** | 5 |
+| **Configurations** | 4 |
 | **Consecutive Runs** | 10 per configuration |
 
 These experiments assess algorithmic **stability and reproducibility** by executing each configuration 10 consecutive times under identical conditions.
